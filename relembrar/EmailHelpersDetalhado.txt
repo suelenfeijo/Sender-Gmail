@@ -1,0 +1,178 @@
+Seguir identação ( colado na página é comentário)   
+   
+   
+   
+   
+pesquisar sobre:  
+Multipurpose Internet Mail Extensions
+   
+	   MimeMessage message = mailSender.createMimeMessage();
+	   MimeMessageHelper helper = new MimeMessageHelper(message, true);   
+   
+MimeMessage ->  MimeMessage é uma classe na API JavaMail que 
+representa uma mensagem MIME (Multipurpose Internet Mail Extensions).
+MIME é um formato padrão para mensagens que pode conter várias partes, 
+como texto, imagens, áudio e vídeo. Um objeto MimeMessage pode conter
+diversas partes, cada uma com seu próprio tipo de conteúdo, codificação
+e disposição.
+
+
+MimeMessageHelper -> MimeMessageHelper é uma classe utilitária no módulo
+spring-context-support do Spring Framework que simplifica a criação e 
+manipulação de objetos MimeMessage. Ele fornece uma interface fluente 
+para definir várias propriedades da mensagem, como assunto, destinatário 
+e conteúdo. Ele também fornece métodos para adicionar anexos e recursos 
+embutidos à mensagem.
+
+
+  
+Usando a classe MimeMessageHelper, você pode simplificar a criação
+e a manipulação de objetos MimeMessage, sem precisar definir manualmente
+os vários cabeçalhos MIME e partes da mensagem. Ele fornece uma interface
+mais amigável para definir propriedades de mensagens e adicionar anexos
+ou recursos embutidos.
+   
+   
+   
+   
+   
+   
+   
+   
+   
+         for (String imageUrl : emailRequest.getImageUrls()) {
+					URL url = new URL(imageUrl);
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					connection.setRequestMethod("GET");
+					connection.setDoOutput(true);
+					connection.connect();
+					InputStream inputStream = connection.getInputStream();
+					byte[] imageData = inputStream.readAllBytes();
+					inputStream.close();
+					String imageFileName = "image_" + System.currentTimeMillis() + ".png";
+					MimeType mimeType = new MimeType("image", "png"); // set the correct mime type based on the URL
+					FileSystemResource image = new FileSystemResource(new File(imageFileName));
+					FileCopyUtils.copy(imageData, image.getFile());
+					helper.addInline(image.getFilename(), image);
+				}
+				
+				
+				
+				
+				
+
+DETALHANDO:
+
+
+1 - for (String imageUrl : emailRequest.getImageUrls()) 
+
+Esse é um loop que itera sobre uma lista de URLs de imagens
+que vieram na requisição do email. Para cada URL, ele vai
+fazer o download da imagem e anexá-la ao email.
+
+
+2 - URL url = new URL(imageUrl); - Essa linha cria um objeto 
+URL com a URL da imagem atual.
+
+3 - HttpURLConnection connection = (HttpURLConnection)
+essa linha cria uma conexão HTTP com a URL da imagem.
+
+4 connection.setRequestMethod("GET");
+Essa linha define o método HTTP como "GET"
+, que é usado para fazer o download de um arquivo.
+
+
+5 - connection.setDoOutput(true);
+Essa linha diz ao Java que nós vamos enviar dados
+para o servidor, mas no caso de um download de arquivo,
+não é necessário enviar nada, então essa linha pode ser ignorada.
+  
+  
+6 - connection.connect(); 
+Essa linha estabelece a conexão com o servidor e baixa a imagem.
+
+7 - InputStream inputStream = connection.getInputStream();
+Essa linha obtém o fluxo de bytes da imagem baixada.
+
+8 - byte[] imageData = inputStream.readAllBytes(); 
+Essa linha lê todos os bytes do fluxo de entrada e 
+armazena em um array de bytes chamado imageData.
+
+9 - inputStream.close();
+Essa linha fecha o fluxo de entrada 
+para economizar memória.
+
+10 - String imageFileName = "image_" + System.currentTimeMillis() + ".png";
+Essa linha cria um nome de arquivo único para a imagem, adicionando o tempo 
+atual em milissegundos ao nome do arquivo
+
+11 - MimeType mimeType = new MimeType("image", "png");
+Essa linha define o tipo de conteúdo da imagem como "image/png".
+
+12 - FileSystemResource image = new FileSystemResource(new File(imageFileName)); 
+Essa linha cria um objeto FileSystemResource que representa o arquivo no
+sistema de arquivos.
+
+FileCopyUtils.copy(imageData, image.getFile());
+13 - Essa linha copia os bytes da imagem para 
+o arquivo no sistema de arquivos.
+
+14 - helper.addInline(image.getFilename(), image);
+Essa linha adiciona a imagem como um anexo inline 
+no email, com o nome de arquivo definido na linha 10.
+
+
+
+
+TAG: Inline (segue parecido com o inline do css) 
+são arquivos imbutidos, no caso aqui, vai imbutido no email os arquivos anexados.
+
+
+
+
+
+		for (String imagePath : emailRequest.getImagePaths()) {
+					FileSystemResource image = new FileSystemResource(new File(imagePath));
+					helper.addInline(image.getFilename(), image);
+				}
+
+				for (String pdfPath : emailRequest.getPdfPaths()) {
+					FileSystemResource pdf = new FileSystemResource(new File(pdfPath));
+					helper.addAttachment(pdf.getFilename(), pdf);
+				}
+				mailSender.send(message);
+				return "Email enviado com sucesso!";
+
+
+
+1 - for (String imagePath : emailRequest.getImagePaths()) {
+Esse é um loop que itera sobre uma lista de caminhos de imagens que
+vieram na requisição do email. Para cada caminho, ele vai adicionar
+a imagem como um anexo inline no email.
+
+2 - FileSystemResource image = new FileSystemResource(new File(imagePath));
+Essa linha cria um objeto FileSystemResource que representa o arquivo 
+de imagem no sistema de arquivos.
+
+2 - helper.addInline(image.getFilename(), image);
+Essa linha adiciona a imagem como um anexo inline no email, 
+com o nome de arquivo definido no atributo filename do objeto
+FileSystemResource.
+
+3 - for (String pdfPath : emailRequest.getPdfPaths())
+Esse é um loop que itera sobre uma lista de caminhos de 
+PDFs que vieram na requisição do email. Para cada caminho,
+ele vai adicionar o PDF como um anexo no email.
+
+
+4 - FileSystemResource pdf = new FileSystemResource(new File(pdfPath));
+Essa linha cria um objeto FileSystemResource que representa o 
+arquivo de PDF no sistema de arquivos.
+
+5 - helper.addAttachment(pdf.getFilename(), pdf); 
+Essa linha adiciona o PDF como um anexo no email, com o
+nome de arquivo definido no atributo filename do objeto FileSystemResource.
+
+6 - mailSender.send(message);
+Essa linha envia o email com as imagens e PDFs anexados.
+

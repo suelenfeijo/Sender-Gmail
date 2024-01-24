@@ -1,0 +1,23 @@
+repositorio: https://github.com/dynomake/libretranslate-java
+
+dependecia
+
+
+
+<dependency>
+    <groupId>net.clojars.suuft</groupId>
+    <artifactId>libretranslate-java</artifactId>
+    <version>1.0.5</version>
+</dependency>
+
+
+repositorio
+
+OBS: adicionar depois de dependecies
+
+	<repositories>
+		<repository>
+			<id>clojars.org</id>
+			<url>https://repo.clojars.org</url>
+		</repository>
+	</repositories>

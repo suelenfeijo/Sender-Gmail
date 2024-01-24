@@ -1,0 +1,84 @@
+Princípios - e melhor enentendo sobre SOLID
+Criado: Michael Feathers
+
+OCP -> ABERTO PARA EXTENSÃO /FECHADO PARA MODIFICAÇÃO
+Acomplamento e coesão -> base do solid.
+
+Barbara Liskovisc
+UPDATE/DELETE/SAVE/VIEW -> Precisam estar em classes diferentes.
+O ideal é ter uma classe para cada método.
+Mas o repository , é um só para cada classe, com os métodos a 
+serem implementados. (seja os extendsJPA, ou não)
+
+God Class = classe Deus (faz td) 
+S : Single-responsability principle
+
+classe, componente , e função -> deve ter uma só responsabilidade
+
+o jeito errado é um robô que faz tudo: imagine tudo. 
+
+cada classe / componente , precisa ser o melhor no que faz e se especializar nessa função.
+
+
+Benefícios:
+Reaproveitamente 
+Refatoração
+e - bugs (mesmo existindo, é mais fácil de isolar e consertar o problema)
+
+
+além de não precisar guardar todas as informações , e afins do projeto. 
+pois as informações ficam isoladas, logo,
+mais fácil de se ler , se localizar, e entender.
+
+
+
+Design Prematuro (estudar)
+
+
+O : Open Closed Principal
+
+Classes , entidades ou funções devem estar abertas para extensão
+mas fechadas para modificação  - mt confuso realmente.
+
+Modelo de plugins
+
+L: LISCOV SUBSTITUTION PRINCIPLE
+
+Em classes pai , é o seguinte, não se deve fazer métodos 
+que ao ser extendida essa classe , ocorram problemas.
+separe esse método como uma outra classe, e nas classes pai a serem extendidas,
+use e faça métodos que as classes que irão herdar, irão usar em comum, pois 
+assim, não haverá problemas.
+
+
+I: INTERFACE INDEPENDENTS PRINCIPLE
+
+
+A classe não deve ser forçada a implementar interfaces que ela 
+não vai precisar. Em nível abstrato aqui se aplica a diversidade lgbt , por exemplo! 
+é preciso entender que cada classe terá comportamentos / caracteríscas 
+diferentes. Ou seja, cada classe , com seu cada qual , e suas próprias 
+funcionalidades sem depender de interfaces inutilizadas no componente. 
+por isso a importância de fazer heranças pensadas no uso geral de todo o projeto.
+
+D: DEPENDENCY INVERSION PRINCIPLE
+
+Achei top essa aqui, pois me deu uma clareza maior de por que usar interfaces.
+
+Um método, um módulo, não deve depender de outros métodos diretamente, precisa
+existir uma peça de encaixe entre o utilizador e a ferramenta. Pois torna o código adaptável.
+Pois consigo retirar um método de uma classe de forma mais simples por não estar planejada
+diretamente ao objeto em questão, ela possui uma peça adaptável.
+
+
+
+
+SOLID fica FÁCIL com Essas Ilustrações
+https://www.youtube.com/watch?v=6SfrO3D4dHM
+
+SOLID (O básico para você programar melhor) // Dicionário do Programador
+https://www.youtube.com/watch?v=mkx0CdWiPRA
+
+
+Artigo:
+https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898

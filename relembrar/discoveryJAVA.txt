@@ -1,0 +1,100 @@
+Algumas exceptions que tive curiosidade de relembrar
+
+
+		BadTranslatorResponseException
+
+
+
+não é uma classe de exceção padrão em Java,
+então presumo que seja uma classe de exceção personalizada definida da api
+  
+  
+
+		MessagingException
+
+
+é uma exceção verificada na API JavaMail que indica que ocorreu um
+erro ao enviar ou receber mensagens de email. É uma subclasse da 
+classe java.lang.Exception e pode ser lançada por vários métodos na 
+API JavaMail, como javax.mail.Session.getTransport() ou 
+javax.mail.Transport.sendMessage().
+
+MessagingException pode ter diversas causas, como erros de rede, 
+falhas de autenticação ou sintaxe de mensagem inválida. 
+Quando uma MessagingException é lançada, geralmente inclui uma 
+mensagem de erro e uma exceção aninhada que fornece mais detalhes 
+sobre a causa do erro.
+
+
+
+		java.lang.Exception 
+		
+mãe de todas as exceptions
+
+
+		IOException 
+
+é uma exceção verificada em Java que indica que ocorreu um erro de 
+I/O durante a leitura ou gravação em um fluxo, arquivo ou outro recurso
+de I/O. É uma subclasse da classe java.lang.Exception e pode ser lançada 
+por vários métodos na biblioteca padrão Java, como 
+java.io.FileInputStream.read() ou java.io.FileOutputStream.write().
+
+IOException pode ter diversas causas, como arquivo não encontrado, 
+disco cheio ou erros de rede. Quando uma IOException é lançada, 
+geralmente inclui uma mensagem de erro e uma exceção aninhada que 
+fornece mais detalhes sobre a causa do erro.
+
+	    throws
+	    
+No contexto do código, A cláusula throws especifica que 
+o método pode lançar exceções MessagingException e IOException. 
+Isso significa que se ocorrer um erro ao enviar o e-mail ou 
+ler/gravar em um arquivo, o método lançará uma dessas exceções 
+para indicar o erro. O chamador do método deve tratar essas 
+exceções ou declará-las em sua própria cláusula throws.
+
+
+	printStackTrace
+
+
+printStackTrace() é um método da classe Throwable em Java, que é 
+a superclasse de todos os erros e exceções em Java. É usado para i
+mprimir um rastreamento de pilha do thread atual no fluxo de 
+erros padrão (System.err).
+
+O rastreamento de pilha inclui o nome da exceção ou do erro, a 
+mensagem (se houver) e a sequência de chamadas de método que 
+levaram à exceção ou ao erro. É uma ferramenta útil para depuração, 
+pois permite ver a sequência exata de chamadas de método que levaram 
+à exceção ou ao erro e pode ajudá-lo a identificar onde o problema 
+ocorreu no seu código.
+
+
+	RuntimeException
+
+é um tipo de exceção em Java que ocorre 
+durante a execução de um programa. É uma subclasse da 
+classe Exception e é usada para indicar que ocorreu um 
+erro que está fora do fluxo normal de controle.
+
+Ao contrário das exceções verificadas, as exceções 
+de tempo de execução não precisam ser declaradas na 
+cláusula throws de um método e não precisam ser capturadas
+ou tratadas pelo código que chama o método. Em vez disso, 
+eles normalmente são tratados pelo manipulador de exceções 
+padrão, que imprime um rastreamento de pilha no console.
+
+Algumas subclasses comuns de RuntimeException incluem:
+
+NullPointerException: lançada quando um aplicativo tenta usar uma 
+referência de objeto nula.
+
+ArrayIndexOutOfBoundsException: lançada quando um aplicativo
+tenta acessar um elemento do array em um índice inválido.
+
+IllegalArgumentException: lançada quando uma aplicação passa um 
+argumento ilegal ou inapropriado para um método.
+
+IllegalStateException: lançada quando uma aplicação tenta 
+realizar uma operação que não é permitida para o estado atual do objeto.

@@ -1,0 +1,29 @@
+As interfaces são importantes por que elas podes conectar
+objetos / classes , que comumente não seriam aceitas se ligadas 
+diretamentes.
+
+Então, torno meu sistema mais adaptável e flexivel para futuras
+manutenções/update ou até o reaproveitamento do código.
+
+Queremos camadas bem definidas e funções definidas, seguindo os principios
+do solid.
+Uma camada que vai apresentar os dados ao o usuário, não pode/não precisa
+ter acesso as regras de negócios , por isso usamos o controller separado
+dos services e/ou microservices
+
+além de que , provendo essa segregação de camadas , 
+ ocultando a regra de negócio (o código implementado com suas caractiriscas 
+/necessidades próprias) , e também separando a mesma, pela interface, ou seja
+o cliente não recebe informações da camada de serviços , ele conversa com a 
+interface e não obtém acesso aos métodos (e apenas as declarações e não lógica)
+de cada método implementado na interface que foi feito o contrato entre a 
+classe e a interface implementada.
+Assim também, garantindo que eu consiga ter na classe 
+os métodos necessários que previ para a determinada classe/sistema,
+evitando que esqueça de implementar alguma funcionalidade especifica.
+
+
+video de apoio:
+INTERFACES EM JAVA: A IMPORTÂNCIA DAS CAMADAS
+https://www.youtube.com/watch?v=yxX9USIFtew
+
